@@ -8,7 +8,7 @@ const errorHandler = (err, req, res, next) => {
 
   //mongoose errors
   if (err.name === "CastError") {
-    const message = `todo not found id:${err.value}`
+    const message = `todo not found`
     error = new ErrorRespons(message, 400)
   }
   //validation errors

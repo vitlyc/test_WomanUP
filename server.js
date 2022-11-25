@@ -1,10 +1,16 @@
 const dotenv = require("dotenv").config()
 const path = require("path")
 const express = require("express")
+const mongoSanitize = require("express-mongo-sanitize")
+const cors = require("cors")
+const rateLimit = require("express-rate-limit")
 const fileupload = require("express-fileupload")
+
 const connectDB = require("./middlewares/mongoose")
 const errorHandler = require("./middlewares/errors")
+
 const PORT = process.env.PORT || 3003
+
 connectDB()
 
 //routes
@@ -15,10 +21,18 @@ const todos = require("./routes/todos")
 const app = express()
 app.use(express.json())
 
+app.use(mongoSanitize())
+app.use(cors())
+
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100,
+})
+app.use(limiter)
+
 app.use(fileupload())
 app.use(express.static(path.join(__dirname, "upload")))
 
-console.log(path.join(__dirname, "upload"))
 //routes
 app.use("/api/v1/upload", upload)
 app.use("/api/v1/todos", todos)
