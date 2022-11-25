@@ -8,7 +8,16 @@ const {
   deleteTodo,
 } = require("../controllers/todos")
 
-router.route("/").get(getTodos).post(createTodo)
-router.route("/:id").get(getTodo).put(updateTodo).delete(deleteTodo)
+const Todo = require("../models/Todo")
+
+const filtering = require("../middlewares/filtering")
+const { protect } = require("../middlewares/auth")
+
+router.route("/").get(protect, filtering(Todo), getTodos).post(protect, createTodo)
+router
+  .route("/:id")
+  .get(protect, getTodo)
+  .put(protect, updateTodo)
+  .delete(protect, deleteTodo)
 
 module.exports = router
