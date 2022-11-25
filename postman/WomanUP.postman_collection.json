@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "b29ed847-7629-4216-9032-b87a86c8ad83",
+		"name": "WomanUP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17336932"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload file",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "File",
+									"type": "file",
+									"src": "/C:/Users/Vitaly/Pictures/prev/caesar-logo.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Rigister user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"name1@mail.com\",\r\n    \"password\":\"12345\",\r\n    \"name\":\"name1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/users/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"name1@mail.com\",\r\n    \"password\":\"12345\"\r\n  \r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/users/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"name2@mail.com\",\r\n    \"name\":\"name2\"\r\n  \r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/users/update",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Get todos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"console.log(pm.environment.name)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlNjAyOTJjMTBjNTg3YjM5Yzk5NiIsImlhdCI6MTY2OTM5NDc4MywiZXhwIjoxNjY5NDgxMTgzfQ.HYMufXKGLuZXn8KOKb5FPLq975Hsben5zl9lgZOqL9k",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/todos?text=заметка один",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"todos"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "заметка один"
+								}
+							]
+						},
+						"description": "Get all todos"
+					},
+					"response": []
+				},
+				{
+					"name": "Get todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/todos/637f84102e6a24d07d694ded",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"todos",
+								"637f84102e6a24d07d694ded"
+							]
+						},
+						"description": "Get single todo"
+					},
+					"response": []
+				},
+				{
+					"name": "Create todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlNjAyOTJjMTBjNTg3YjM5Yzk5NiIsImlhdCI6MTY2OTM5MjIyNSwiZXhwIjoxNjY5NDc4NjI1fQ.dvW8gmldxPr3d8WGXJvbhy4Ml-1LCXhgiEP-Cq1wUSk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"заметка один\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/todos/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"todos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"text\": \"заметка изменилась\"}"
+						},
+						"url": {
+							"raw": "{{URL}}/todos/6380f9d8a17f9175c8e69d1e",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"todos",
+								"6380f9d8a17f9175c8e69d1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/todos/637f84152e6a24d07d694ded",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"todos",
+								"637f84152e6a24d07d694ded"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
