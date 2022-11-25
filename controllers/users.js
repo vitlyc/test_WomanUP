@@ -46,3 +46,21 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     token,
   })
 })
+
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const fieldsToUpdate = {
+    email: req.body.email,
+    name: req.body.name,
+  }
+
+  const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+    new: true,
+    runValidators: true,
+  })
+
+  res.status(200).json({
+    success: true,
+    msg: "update user",
+    data: user,
+  })
+})
