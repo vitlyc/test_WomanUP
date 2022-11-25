@@ -41,7 +41,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    msg: "create user",
+    msg: "login user",
     data: user,
     token,
   })
