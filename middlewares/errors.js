@@ -1,10 +1,13 @@
+/**
+ * @file файл с миддлевером для фильтрации и обработки ошибок
+ */
 const ErrorRespons = require("../utils/errorResponse")
 
 const errorHandler = (err, req, res, next) => {
   let error = { ...err }
   error.message = err.message
 
-  console.log(err.name)
+  console.log(err)
 
   //mongoose errors
   if (err.name === "CastError") {

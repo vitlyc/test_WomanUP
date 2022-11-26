@@ -1,3 +1,6 @@
+/**
+ * @file файл с роутами /users
+ */
 const express = require("express")
 const router = express.Router()
 const { protect } = require("../middlewares/auth")

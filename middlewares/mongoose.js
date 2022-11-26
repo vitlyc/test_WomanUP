@@ -1,3 +1,6 @@
+/**
+ * @file файл для подключения к базе mongo
+ */
 const mongoose = require("mongoose")
 
 const connectDB = async () => {

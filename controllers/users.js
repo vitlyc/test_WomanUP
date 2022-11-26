@@ -1,3 +1,6 @@
+/**
+ * @file файл с контроллерами обработки запроса к /users
+ */
 const ErrorRespons = require("../utils/errorResponse")
 const asyncHandler = require("../middlewares/asyncHandler")
 const User = require("../models/User")

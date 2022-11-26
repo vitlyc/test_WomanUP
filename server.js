@@ -1,3 +1,10 @@
+/**
+ * @file корневой файл приложения
+ * Тут подключаются основные миддлеверы, роуты, запускается сервер и mongoDB
+ * @author vitlyc
+ * @see <a https://github.com/vitlyc/test_WomanUP">test</a>
+ */
+
 const dotenv = require("dotenv").config()
 const path = require("path")
 const express = require("express")
@@ -23,7 +30,9 @@ app.use(express.json())
 
 app.use(mongoSanitize())
 app.use(cors())
-
+/**
+ * limiter
+ */
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
   max: 100,
@@ -48,4 +57,4 @@ process.on("необработанная ошибка", (err, promise) => {
   // server.close(() => process.exit(1));
 })
 
-// http://localhost:3000/api/v1/caesar-logo.jpg
+// http://127.0.0.1:3000

@@ -1,3 +1,6 @@
+/**
+ * @file файл с контроллерами обработки запроса к /todos
+ */
 const asyncHandler = require("../middlewares/asyncHandler")
 const ErrorRespons = require("../utils/errorResponse")
 const Todo = require("../models/Todo")
@@ -59,13 +62,12 @@ exports.updateTodo = asyncHandler(async (req, res, next) => {
 exports.deleteTodo = asyncHandler(async (req, res, next) => {
   const todo = await Todo.findById(req.params.id)
 
+  if (!todo) {
+    return next(new ErrorRespons(`todo not found id:${req.params.id}`, 404))
+  }
   //check todo owner
   if (todo.user.toString() !== req.user.id) {
     return next(new ErrorRespons(`you are not owner todo id:${req.params.id}`, 404))
-  }
-
-  if (!todo) {
-    return next(new ErrorRespons(`todo not found id:${req.params.id}`, 404))
   }
 
   todo.remove()

@@ -1,3 +1,6 @@
+/**
+ * @file файл с моделью Todo
+ */
 const mongoose = require("mongoose")
 
 const TodoSchema = new mongoose.Schema(

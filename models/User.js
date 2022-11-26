@@ -1,3 +1,6 @@
+/**
+ * @file файл с моделью User
+ */
 const mongoose = require("mongoose")
 const validator = require("validator")
 const bcrypt = require("bcryptjs")

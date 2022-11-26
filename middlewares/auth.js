@@ -1,3 +1,6 @@
+/**
+ * @file миддлевер проверки авторизации пользователя
+ */
 const jwt = require("jsonwebtoken")
 const ErrorRespons = require("../utils/errorResponse")
 const asyncHandler = require("../middlewares/asyncHandler")

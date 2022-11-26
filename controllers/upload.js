@@ -1,3 +1,6 @@
+/**
+ * @file файл с контроллером обработки запроса к /upload
+ */
 const path = require("path")
 const asyncHandler = require("../middlewares/asyncHandler")
 const ErrorRespons = require("../utils/errorResponse")
@@ -14,7 +17,7 @@ exports.uploadFile = asyncHandler(async (req, res, next) => {
       new ErrorResponse(`file size is more than ${process.env.MAX_FILE_SIZE}`, 400)
     )
   }
-
+  //перемещение файла в папку ./upload
   file.mv(`${process.env.UPLOAD_PATH}/${file.name}`, async (err) => {
     if (err) {
       console.error(err)

@@ -39,7 +39,8 @@
 							"path": [
 								"upload"
 							]
-						}
+						},
+						"description": "Роут для загрузки файлов. Ограничение 10 МБ"
 					},
 					"response": []
 				}
@@ -84,7 +85,8 @@
 								"users",
 								"register"
 							]
-						}
+						},
+						"description": "Регистрация пользователя"
 					},
 					"response": []
 				},
@@ -124,7 +126,8 @@
 								"users",
 								"login"
 							]
-						}
+						},
+						"description": "Логин пользователя"
 					},
 					"response": []
 				},
@@ -174,7 +177,8 @@
 								"users",
 								"update"
 							]
-						}
+						},
+						"description": "Обновление email и name пользователя"
 					},
 					"response": []
 				}
@@ -231,21 +235,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{URL}}/todos?text=заметка один",
+							"raw": "{{URL}}/todos",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"todos"
-							],
-							"query": [
-								{
-									"key": "text",
-									"value": "заметка один"
-								}
 							]
 						},
-						"description": "Get all todos"
+						"description": "Получить все, если без параметров.\n\ntext=<слово> - поиск по тексту\n\nlimit=2 - ограничение на вывод, по умолчанию 5\n\npage=2 - номер страницы"
 					},
 					"response": []
 				},
@@ -274,7 +272,7 @@
 								"637f84102e6a24d07d694ded"
 							]
 						},
-						"description": "Get single todo"
+						"description": "Получить один туду по id"
 					},
 					"response": []
 				},
@@ -318,7 +316,8 @@
 								"todos",
 								""
 							]
-						}
+						},
+						"description": "Создать туду"
 					},
 					"response": []
 				},
@@ -349,15 +348,16 @@
 							"raw": "{\"text\": \"заметка изменилась\"}"
 						},
 						"url": {
-							"raw": "{{URL}}/todos/6380f9d8a17f9175c8e69d1e",
+							"raw": "{{URL}}/todos/6381083694e336143c83ce47",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"todos",
-								"6380f9d8a17f9175c8e69d1e"
+								"6381083694e336143c83ce47"
 							]
-						}
+						},
+						"description": "Обновить туду"
 					},
 					"response": []
 				},
@@ -385,7 +385,8 @@
 								"todos",
 								"637f84152e6a24d07d694ded"
 							]
-						}
+						},
+						"description": "Удалить туду"
 					},
 					"response": []
 				}
